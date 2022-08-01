@@ -1,0 +1,15 @@
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\bin\Debug\net6.0\GymLog.exe
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\bin\Debug\net6.0\GymLog.deps.json
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\bin\Debug\net6.0\GymLog.runtimeconfig.json
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\bin\Debug\net6.0\GymLog.dll
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\bin\Debug\net6.0\GymLog.pdb
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\obj\Debug\net6.0\GymLog.csproj.AssemblyReference.cache
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\obj\Debug\net6.0\GymLog.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\obj\Debug\net6.0\GymLog.AssemblyInfoInputs.cache
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\obj\Debug\net6.0\GymLog.AssemblyInfo.cs
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\obj\Debug\net6.0\GymLog.csproj.CoreCompileInputs.cache
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\obj\Debug\net6.0\GymLog.dll
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\obj\Debug\net6.0\refint\GymLog.dll
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\obj\Debug\net6.0\GymLog.pdb
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\obj\Debug\net6.0\GymLog.genruntimeconfig.cache
+C:\Users\uualt\OneDrive\Documents\MSSA\GymLog\GymLog\obj\Debug\net6.0\ref\GymLog.dll
