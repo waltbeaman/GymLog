@@ -13,6 +13,7 @@
 //          a. Set cursor position to be inside a box.
 //          b. Create more aesthetic formatting of workout data.
 //          c. Improve menu design.
+using System.Text;
 
 namespace GymLog
 {
@@ -29,8 +30,7 @@ namespace GymLog
 
         }
 
-
-        internal static void CreateWorkout()
+        internal static async void CreateWorkout()
         {
 
             // Get/store today's date
@@ -52,12 +52,12 @@ namespace GymLog
             while (state)
             {
 
-                Menu.GenerateMenu(4);
+                Menu.GenerateMenu(3);
 
 
-                ConsoleKey key = Console.ReadKey(true).Key;
+                ConsoleKey menuKey = Console.ReadKey(true).Key;
 
-                switch (key)
+                switch (menuKey)
                 {
                     case ConsoleKey.D1:
                         intensity = 3;
@@ -84,44 +84,41 @@ namespace GymLog
             // Add exercises
             Exercise[] exercises = AddExercises();
 
-
             // Instantiate the new workout
             // Load functions to calculate workout data or gather it from user as applicable
             Workout theWorkout = new Workout(date, workoutLength, caloriesBurned, bodyWeight, exercises);
+                        
+            string formattedWorkout = Data.FormatWorkout(theWorkout, exercises);
 
-            // TODO: Print workout results to text/JSON files and/or SQL DB
-            Console.WriteLine("\t\tWorkout complete! Here are your results:");
-            Console.WriteLine();
-            Console.WriteLine($"\t\tWorkout date: {theWorkout.Date}");
-            Console.WriteLine($"\t\tWorkout duration: {theWorkout.WorkoutLength}");
-            Console.WriteLine($"\t\tCalories burned: {theWorkout.CaloriesBurned}");
-            Console.WriteLine($"\t\tBodyweight: {theWorkout.BodyWeight}");
-
-            foreach (Exercise exercise in exercises)
-            {
-                Console.WriteLine();
-
-                Console.WriteLine($"\t\tExercise #: {exercise.ExerciseID}");
-                Console.WriteLine($"\t\tExercise Name: {exercise.ExerciseName}");
-
-                Console.WriteLine();
-
-                // TODO: Improve results formatting
-                Console.WriteLine("\t\tSet #:\tWeight:\tReps:");
-                foreach (Exercise.Set exerciseSet in exercise.ExerciseSets)
-                {
-                    Console.WriteLine($"\t\t{exerciseSet.SetNum}\t{exerciseSet.Weight}\t{exerciseSet.Reps}");
-                }
-
-                Console.WriteLine();
-            }
+            Console.Write(formattedWorkout);
 
             // Show the results to the user and wait
-            Thread.Sleep(4000);
-            Console.Write("Do you need more time? ");
-            Console.ReadLine();
+            Thread.Sleep(1000);
+            Console.Write("\t\tWould you like to save your workout to a file? (y/n)");
 
-            Menu.GenerateMenu(1);
+            //// TODO: Print workout results to text/JSON files and/or SQL DB
+            ConsoleKey saveKey = Console.ReadKey(true).Key;
+
+            bool x = true;
+
+            while (x)
+            {
+                switch (saveKey)
+                {
+                    case ConsoleKey.Y:
+                        await File.WriteAllTextAsync("SavedWorkout.txt", formattedWorkout);
+                        Environment.Exit(0);
+                        break;
+                    case ConsoleKey.N:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("\t\tInvalid selection. Please try again.");
+                        x = true;
+                        break;
+
+                } 
+            }
 
         }
 
@@ -161,7 +158,7 @@ namespace GymLog
                 exerciseArray[arrayPosition] = exercise;
 
                 Console.WriteLine($"\t\t{Calculator.AddOrdinal(i)} exercise added!");
-                Thread.Sleep(2000);
+                Thread.Sleep(500);
 
                 arrayPosition++;
 
@@ -204,7 +201,7 @@ namespace GymLog
                 //Console.Clear();
                 //Program.GenerateBanner();
                 Console.WriteLine($"\t\t{Calculator.AddOrdinal(i)} set of {thisExercise} has been added!");
-                Thread.Sleep(2000);
+                Thread.Sleep(500);
                 //Console.Clear();
                 //Program.GenerateBanner();
 
@@ -229,7 +226,7 @@ namespace GymLog
             {
                 Console.WriteLine($"\t\t{exerciseSet.SetNum}\t{exerciseSet.Weight}\t{exerciseSet.Reps}");
             }
-            Thread.Sleep(4000);
+            Thread.Sleep(500);
 
         }
 

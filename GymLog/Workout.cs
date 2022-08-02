@@ -49,6 +49,5 @@ namespace GymLog
             set { _exercises = value; }
         }
 
-
     }
 }

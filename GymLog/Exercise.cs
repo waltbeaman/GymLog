@@ -24,17 +24,18 @@ namespace GymLog
             get { return _exerciseID; }
             set { _exerciseID = value; }
         }
+
         public string ExerciseName
         {
             get { return _exerciseName; }
             set { _exerciseName = value; }
         }
+
         public Set[] ExerciseSets
         {
             get { return _exerciseSets; }
             set { _exerciseSets = value; }
         }
-
         
         public class Set
         {
@@ -54,11 +55,13 @@ namespace GymLog
                 get { return _setNum; }
                 set { _setNum = value; }
             }
+
             public int Weight
             {
                 get { return _weight; }
                 set { _weight = value; }
             }
+
             public int Reps
             {
                 get { return _reps; }

@@ -8,9 +8,9 @@ namespace GymLog
 {
     internal class Calculator
     {
+        // Turn numerals into ordinals
         public static string AddOrdinal(int num)
         {
-
             switch (num)
             {
                 case 1:
@@ -24,14 +24,13 @@ namespace GymLog
             }
         }
 
+        // Take user inputs to calculate calories burned
         public static int CaloriesBurned(int intensity, decimal bodyWeight, decimal workoutLength)
         {
-            // Take user inputs to calculate calories burned
             int caloriesBurned = Convert.ToInt32((bodyWeight / 2.205m) * intensity * workoutLength);
             // Console.WriteLine(caloriesBurned);
             return caloriesBurned;
 
         }
     }
-
 }

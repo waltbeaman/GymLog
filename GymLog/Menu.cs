@@ -21,8 +21,7 @@ namespace GymLog
     ║    ╚██████╔╝  ██║   ██║ ╚═╝ ██║███████╗╚██████╔╝╚██████╔╝     ██║██╗╚██████╔╝   ║
     ║     ╚═════╝   ╚═╝   ╚═╝     ╚═╝╚══════╝ ╚═════╝  ╚═════╝      ╚═╝╚═╝ ╚═════╝    ║";
 
-            // TODO: modify the code below to work with GymLog menu options
-            // TODO: Combine the GenerateBanner() method with MainMenu() and rename "Menu()"
+
             string mainMenu = @"
     ╟─────────────────────────────────────────────────────────────────────────────────╢
     ║  SELECT AN OPTION                                                               ║
@@ -93,12 +92,8 @@ namespace GymLog
                 case 2:
                     Console.Write(workoutMenu);
                     break;
-                case 4:
-                    // TODO: Add code for intensity selection
-                    // Get workout intensity
-
+                case 3:
                     Console.Write(intensityMenu);
-
                     break;
                 default:
                     Console.Write(menuOptionDefault);
@@ -107,4 +102,5 @@ namespace GymLog
 
         }
     }
+
 }
