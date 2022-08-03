@@ -1,22 +1,25 @@
-Workout date: 8/1/2022 12:00:00 AM 
+╔══════════════════════════════════════════════╗
+║          GYMLOG WORKOUT SHEET           ║
+╚══════════════════════════════════════════════╝
+Workout date: 8/2/2022 12:00:00 AM 
 Workout duration: 1 
 Bodyweight: 200 
 Calories burned: 454 
 Bodyweight: 200 
 
 
-Exercise #: 1Exercise Name: Squat
+Exercise #: 1
+Exercise Name: Squat
 
-Set #:		Weight:		Reps:
+Set #:	Weight:		Reps:
 1		225		5
 2		225		5
-3		225		5
 
 
-Exercise #: 2Exercise Name: Bench Press
+Exercise #: 2
+Exercise Name: Bench Press
 
-Set #:		Weight:		Reps:
+Set #:	Weight:		Reps:
 1		185		5
 2		185		5
-3		185		5
 

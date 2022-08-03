@@ -6,100 +6,90 @@ using System.Threading.Tasks;
 
 namespace GymLog
 {
-    static internal class Menu
+    internal static class Menu
     {
 
-        public static void GenerateMenu(int menu)
+        public static string mainMenu = File.ReadAllText("MainMenu.txt");
+        public static string intensityMenu = File.ReadAllText("IntensityMenu.txt");
+        public static string otherMenu = File.ReadAllText("OtherMenu.txt");
+        public static string defaultMenu = File.ReadAllText("DefaultMenu.txt");
+        public static string banner = File.ReadAllText("Banner.txt");
+
+        public static void MainMenu()
         {
 
-            string banner = @"
-    ╔═════════════════════════════════════════════════════════════════════════════════╗
-    ║     ██████╗██╗   ██╗███╗   ███╗██╗      ██████╗  ██████╗      ██╗    ██████╗    ║
-    ║    ██╔════╝╚██╗ ██╔╝████╗ ████║██║     ██╔═══██╗██╔════╝     ███║   ██╔═████╗   ║
-    ║    ██║  ███╗╚████╔╝ ██╔████╔██║██║     ██║   ██║██║  ███╗    ╚██║   ██║██╔██║   ║
-    ║    ██║   ██║ ╚██╔╝  ██║╚██╔╝██║██║     ██║   ██║██║   ██║     ██║   ████╔╝██║   ║
-    ║    ╚██████╔╝  ██║   ██║ ╚═╝ ██║███████╗╚██████╔╝╚██████╔╝     ██║██╗╚██████╔╝   ║
-    ║     ╚═════╝   ╚═╝   ╚═╝     ╚═╝╚══════╝ ╚═════╝  ╚═════╝      ╚═╝╚═╝ ╚═════╝    ║";
-
-
-            string mainMenu = @"
-    ╟─────────────────────────────────────────────────────────────────────────────────╢
-    ║  SELECT AN OPTION                                                               ║
-    ╟──────┬──────────────────────────────────────────────────────────────────────────╢
-    ║   1  │  Create Workout                                                          ║
-    ║   2  │  View Workout History                                                    ║
-    ║   3  │  View One Rep Max                                                        ║
-    ║   4  │  Placeholder                                                             ║
-    ║  Esc │  Exit Application                                                        ║
-    ╚══════╧══════════════════════════════════════════════════════════════════════════╝
-    >>> ";
-            string workoutMenu = @"
-    ╟─────────────────────────────────────────────────────────────────────────────────╢
-    ║  MENU TITLE HERE                                                                ║
-    ╚═════════════════════════════════════════════════════════════════════════════════╝
-";
-
-            string intensityMenu = @"
-    ╟─────────────────────────────────────────────────────────────────────────────────╢
-    ║                           SELECT WORKOUT INTENSITY                              ║
-    ╟──────┬──────────────────────────────────────────────────────────────────────────╢
-    ║   1  │  Easy (No Sweat)                                                         ║
-    ║   2  │  Moderate (Moist Brow)                                                   ║
-    ║   3  │  Extreme (Sweat City)                                                    ║
-    ╚══════╧══════════════════════════════════════════════════════════════════════════╝
-    >>> ";
-            
-            
-            string menuOptionDefault = @"
-    ╚═════════════════════════════════════════════════════════════════════════════════╝
-";
             Console.Clear();
-            Console.Write(banner);
+            Console.Write(banner + mainMenu);
 
-            switch (menu) // menu is int variable option received when calling the menu function from Main()
+
+            // Get menu option from user
+            ConsoleKey key = Console.ReadKey(true).Key;
+
+            // Call appropriate method based on user selection
+            switch (key)
             {
-                case 1:
-                    Console.Write(mainMenu);
-                    // Loop main menu until user quits
-                    while (true)
-                    {
-                        // Get menu option from user
-                        ConsoleKey key = Console.ReadKey(true).Key;
-
-                        // Call appropriate method based on user selection
-                        switch (key)
-                        {
-                            case ConsoleKey.D1:
-                                Program.CreateWorkout();
-                                break;
-                            case ConsoleKey.D2:
-                                Program.ViewWorkoutHistoryTest();
-                                break;
-                            case ConsoleKey.D3:
-                                Program.View1RMTest();
-                                break;
-                            case ConsoleKey.Escape:
-                                Environment.Exit(0);
-                                break;
-                            default:
-                                Console.WriteLine("\t\tPlease make a valid selection!");
-                                Thread.Sleep(2000);
-                                GenerateMenu(1);
-                                break;
-                        }
-                    }
+                case ConsoleKey.D1:
+                    Workout.CreateWorkout();
                     break;
-                case 2:
-                    Console.Write(workoutMenu);
+                case ConsoleKey.D2:
+                    // Test code
+                    Menu.DefaultMenu();
+                    Console.WriteLine("It works!");
                     break;
-                case 3:
-                    Console.Write(intensityMenu);
+                case ConsoleKey.D3:
+                    Menu.DefaultMenu();
+                    Console.WriteLine("It works!");
+                    break;
+                case ConsoleKey.Escape:
+                    Environment.Exit(0);
                     break;
                 default:
-                    Console.Write(menuOptionDefault);
+                    Console.WriteLine("\t\tPlease make a valid selection!");
+                    Thread.Sleep(1000);
+                    MainMenu();
                     break;
             }
+        }
 
+        public static int IntensityMenu()
+        {
+            Console.Clear();
+            Console.Write(banner + intensityMenu);
+
+            int intensity = 0;
+
+            ConsoleKey menuKey = Console.ReadKey(true).Key;
+
+            switch (menuKey)
+            {
+                case ConsoleKey.D1:
+                    intensity = 3;
+                    break;
+                case ConsoleKey.D2:
+                    intensity = 5;
+                    break;
+                case ConsoleKey.D3:
+                    intensity = 8;
+                    break;
+                default:
+                    Console.WriteLine("\t\tInvalid selection. Please try again.");
+                    Thread.Sleep(1000);
+                    Menu.IntensityMenu();
+                    break;
+            }
+            return intensity;
+        }
+
+        public static void DefaultMenu()
+        {
+            Console.Clear();
+            Console.Write(banner + defaultMenu);
+        }
+
+        public static void OtherMenu()
+        {
+            Console.Clear();
+            Console.Write(banner + otherMenu);
         }
     }
 

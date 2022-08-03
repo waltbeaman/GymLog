@@ -32,5 +32,9 @@ namespace GymLog
             return caloriesBurned;
 
         }
+
+        // TODO: Write code for 1RM calculator
+
+        // TODO: Write code for workout volume calculator
     }
 }
