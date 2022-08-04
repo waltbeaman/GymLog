@@ -4,11 +4,11 @@
 
 // TODO LIST:
 //   1. Move all Console.* functions to Program and Menu classes to make code more reusable.--DONE
-//   2. Instantiate workout and exercise objects from Program class.--DONE
+//   2. Move methods to appropriate classes (outside of Program)
 //   3. Write code the 1RM calculator.
 //   4. Write code for SQL/JSON database connection.
 //   5. Add exception handling.
-//   6. Modify menus to be called from the GenerateMenu() method.--DONE
+//   6. Modify menus to be called from the Menu class.--DONE
 //   7. Add improved design elements if sufficient time:
 //          a. Set cursor position to be inside a box.
 //          b. Create more aesthetic formatting of workout data.

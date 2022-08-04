@@ -23,31 +23,13 @@ namespace GymLog
             Exercises = exercises;
         }
 
-        public string Date
-        {
-            get { return _date; }
-            set { _date = value; }
-        }
-        public int WorkoutLength
-        {
-            get { return _workoutLength; }
-            set { _workoutLength = value; }
-        }
-        public int CaloriesBurned
-        {
-            get { return _caloriesBurned; }
-            set { _caloriesBurned = value; }
-        }
-        public int BodyWeight
-        {
-            get { return _bodyWeight; }
-            set { _bodyWeight = value; }
-        }
-        public Exercise[] Exercises
-        {
-            get { return _exercises; }
-            set { _exercises = value; }
-        }
+        public string Date { get => _date; set => _date = value; }
+        public int WorkoutLength { get => _workoutLength; set => _workoutLength = value; }
+        public int CaloriesBurned { get => _caloriesBurned; set => _caloriesBurned = value; }
+        public int BodyWeight { get => _bodyWeight; set => _bodyWeight = value; }
+        public Exercise[] Exercises { get => _exercises; set => _exercises = value; }
+
+
 
         internal static async void CreateWorkout()
         {
@@ -59,11 +41,18 @@ namespace GymLog
             Menu.DefaultMenu();
 
             // Get duration from user
-            Console.Write("\t\tEnter workout duration (in minutes): ");
+            Console.WriteLine("\tEnter workout duration (in minutes):");
+            Console.Write("\t>>> ");
+            // TODO: Add TryParse validation
             int workoutLength = Convert.ToInt32(Console.ReadLine()) / 60;
 
+            // Load the default menu/banner
+            Menu.DefaultMenu();
+
             // Get user's bodyweight
-            Console.Write("\t\tEnter your weight (in pounds): ");
+            Console.WriteLine("\tEnter your weight (in pounds):");
+            Console.Write("\t>>> ");
+            // TODO: Add TryParse validation
             int bodyWeight = Convert.ToInt32(Console.ReadLine());
 
             // Declare and initialize intensity variable
@@ -79,10 +68,10 @@ namespace GymLog
             // Load functions to calculate workout data or gather it from user as applicable
             Workout theWorkout = new Workout(date, workoutLength, caloriesBurned, bodyWeight, exercises);
 
+            // Send workout details to Data class for formatting
             string formattedWorkout = Data.FormatWorkout(theWorkout, exercises);
 
-            // Clear the console and display banner
-            Console.Clear();
+            // Display banner
             Menu.DefaultMenu();
 
             // Print the workout to the screen
@@ -90,12 +79,8 @@ namespace GymLog
 
             // Show the results to the user and wait
             Thread.Sleep(1000);
-            Console.Write("\t\tWould you like to save your workout to a file? (y/n)");
 
-            //// TODO: Print workout results to text/JSON files and/or SQL DB
-            ConsoleKey saveKey = Console.ReadKey(true).Key;
-
-            Data.SaveToTextFile(saveKey, formattedWorkout);
+            Menu.SaveMenu(formattedWorkout);
 
         }
 

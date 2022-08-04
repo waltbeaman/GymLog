@@ -18,8 +18,7 @@ namespace GymLog
             fileHeaderString.Append($"Workout date: {theWorkout.Date} \n" +
                                     $"Workout duration: {theWorkout.WorkoutLength} \n" +
                                     $"Bodyweight: {theWorkout.BodyWeight} \n" +
-                                    $"Calories burned: { theWorkout.CaloriesBurned} \n" +
-                                    $"Bodyweight: {theWorkout.BodyWeight} \n").AppendLine();
+                                    $"Calories burned: { theWorkout.CaloriesBurned} \n").AppendLine();
 
 
             StringBuilder exerciseString = new();
@@ -34,10 +33,10 @@ namespace GymLog
                 exerciseString.AppendLine();
 
                 // TODO: Improve results formatting: 
-                exerciseString.Append("Set #:\tWeight:\t\tReps:").AppendLine();
+                exerciseString.Append("Set #:\tWeight:\tReps:").AppendLine();
                 foreach (Exercise.Set exerciseSet in exercise.ExerciseSets)
                 {
-                    exerciseString.Append($"{exerciseSet.SetNum}\t\t{exerciseSet.Weight}\t\t{exerciseSet.Reps}").AppendLine();
+                    exerciseString.Append($"{exerciseSet.SetNum}\t{exerciseSet.Weight}\t{exerciseSet.Reps}").AppendLine();
                 }
 
                 exerciseString.AppendLine();
@@ -59,7 +58,7 @@ namespace GymLog
                     Environment.Exit(0);
                     break;
                 default:
-                    Console.WriteLine("\t\tInvalid selection. Please try again.");
+                    Console.WriteLine("\tInvalid selection. Please try again.");
                     SaveToTextFile(saveKey, formattedWorkout);
                     break;
 
