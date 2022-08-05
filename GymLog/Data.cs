@@ -11,10 +11,9 @@ namespace GymLog
         public static string FormatWorkout(Workout theWorkout, Exercise[] exercises)
         {
             // TODO: Fix formatting and create separate options for printing to console and file
+            // TODO: Save string for file header to external text file
             StringBuilder fileHeaderString = new StringBuilder();
-            fileHeaderString.Append("╔══════════════════════════════════════════════╗").AppendLine();
-            fileHeaderString.Append("║          GYMLOG WORKOUT SHEET           ║").AppendLine();
-            fileHeaderString.Append("╚══════════════════════════════════════════════╝").AppendLine();
+            fileHeaderString.Append("════════════ GYMLOG WORKOUT SHEET ════════════").AppendLine();
             fileHeaderString.Append($"Workout date: {theWorkout.Date} \n" +
                                     $"Workout duration: {theWorkout.WorkoutLength} \n" +
                                     $"Bodyweight: {theWorkout.BodyWeight} \n" +
@@ -33,10 +32,10 @@ namespace GymLog
                 exerciseString.AppendLine();
 
                 // TODO: Improve results formatting: 
-                exerciseString.Append("Set #:\tWeight:\tReps:").AppendLine();
+                exerciseString.Append("Set #:\t\tWeight:\t\tReps:").AppendLine();
                 foreach (Exercise.Set exerciseSet in exercise.ExerciseSets)
                 {
-                    exerciseString.Append($"{exerciseSet.SetNum}\t{exerciseSet.Weight}\t{exerciseSet.Reps}").AppendLine();
+                    exerciseString.Append($"{exerciseSet.SetNum}\t\t{exerciseSet.Weight}\t\t{exerciseSet.Reps}").AppendLine();
                 }
 
                 exerciseString.AppendLine();

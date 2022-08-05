@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GymLog
 {
-    internal class Calculator
+    internal static class Calculator
     {
         // Turn numerals into ordinals
         public static string AddOrdinal(int num)
@@ -33,8 +33,27 @@ namespace GymLog
 
         }
 
-        // TODO: Write code for 1RM calculator
+        // TODO: Finish code for 1RM calculator
+        public static int OneRepMax(Exercise.Set[] sets)
+        {
+            int oneRepMax = 0;
+            int tempWeight = 0;
+            foreach (Exercise.Set set in sets)
+            {
+                tempWeight += set.Weight;
+            }
 
-        // TODO: Write code for workout volume calculator
+            return oneRepMax;
+        }
+
+        public static int VolumeCalc(Exercise[] exercises)
+        {
+            int totalVolume = 0;
+            foreach (Exercise ex in exercises)
+            {
+                // TODO: Write code for workout volume calculator
+            }
+            return totalVolume;
+        }
     }
 }

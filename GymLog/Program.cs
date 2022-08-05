@@ -23,7 +23,7 @@ namespace GymLog
         {
             // Set console parameters
             Console.Title = "GymLog 1.0";
-            Console.SetWindowSize(92, 30);
+            Console.SetWindowSize(92, 20);
             Console.BackgroundColor = ConsoleColor.DarkBlue;
 
             // Load main menu

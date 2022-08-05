@@ -6,91 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-#region TestCode
-// ---------ORION'S MENU CODE---------
-
-// ---------TO BUILD---------
-//var menu = new YourNamespace.Menu()
-//                .Add(" Create Student", () => yourFunctionHere())
-//                .Add(" Create Instructor", () => yourFunctionHere())
-//                .Add(" Save Contents", () => yourFunctionHere())
-//                .Add(" Read Contents", () => yourFunctionHere())
-//                .Add(" Tip Calculator", () => yourFunctionHere())
-//                .Add(" Quit", () => Environment.Exit(0));
-
-// ---------CLASS---------
-//public class Menu
-//{
-//    private IList<Option> Options { get; set; }
-
-//    public Menu()
-//    {
-//        Options = new List<Option>();
-//    }
-
-//    public void Display()
-//    {
-//        Console.Clear();
-//        for (int i = 0; i < Options.Count; i++)
-//        {
-//            Console.WriteLine($"{i + 1}{Options[i].Name}");
-//        }
-//        Console.WriteLine("Choose an option (corresponding Number): ");
-//        int choice;
-//        int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out choice);
-//        if (choice <= Options.Count && choice > 0)
-//        {
-//            Options[choice - 1].CallBack();
-//        }
-//        else
-//        {
-//            Console.WriteLine("Selection out of range... Try Again");
-//            Thread.Sleep(2000);
-//            Console.Clear();
-//            Display();
-//        }
-//    }
-//    public Menu Add(string option, Action callback)
-//    {
-//        return Add(new Option(option, callback));
-//    }
-
-//    public Menu Add(Option option)
-//    {
-//        Options.Add(option);
-//        return this;
-//    }
-
-//}
-
-//public struct Option
-//{
-//    public string Name { get; set; }
-//    public Action CallBack { get; set; }
-
-//    public Option(string name, Action callTo)
-//    {
-//        Name = name;
-//        CallBack = callTo;
-//    }
-
-//    public override string ToString()
-//    {
-//        return Name;
-//    }
-//}
-#endregion
-
 namespace GymLog
 {
     public class Menu
     {
-        public string Banner { get; set; } = File.ReadAllText("Banner.txt");
-        public string Bottom { get; set; }
+        private string _banner;
+        private string _bottom;
+
+        public string Banner { get => _banner; set => _banner = value; }
+        public string Bottom { get => _bottom; set => _bottom = value; }
 
         public Menu(Menus menuOption)
         {
-            Bottom = File.ReadAllText($"{menuOption.ToString()}.txt");
+            Banner = File.ReadAllText("Banner.txt");
+            Bottom = File.ReadAllText($"{menuOption}.txt");
         }
 
         public enum Menus
@@ -98,7 +27,7 @@ namespace GymLog
             MainMenu,
             IntensityMenu,
             DefaultMenu,
-            OtherMenu,
+            BannerOnly,
             SaveMenu
         }
 
@@ -110,7 +39,7 @@ namespace GymLog
             Console.Clear();
             Menu mainMenu = new Menu(Menus.MainMenu);
             Console.Write(mainMenu.Display());
-
+            Console.SetCursorPosition(12, 16);
 
             // Get menu option from user
             ConsoleKey key = Console.ReadKey(true).Key;
@@ -123,11 +52,11 @@ namespace GymLog
                     break;
                 case ConsoleKey.D2:
                     // Test code
-                    DefaultMenu();
+                    DefaultMenu("Sample");
                     Console.WriteLine("It works!");
                     break;
                 case ConsoleKey.D3:
-                    DefaultMenu();
+                    DefaultMenu("AN EVEN LARGER SAMPLE IN ALL CAPS");
                     Console.WriteLine("It works!");
                     break;
                 case ConsoleKey.Escape:
@@ -146,6 +75,7 @@ namespace GymLog
             Console.Clear();
             Menu intensityMenu = new Menu(Menus.IntensityMenu);
             Console.Write(intensityMenu.Display());
+            Console.SetCursorPosition(11, 14);
 
             int intensity = 0;
 
@@ -171,18 +101,20 @@ namespace GymLog
             return intensity;
         }
 
-        public static void DefaultMenu()
+        public static void DefaultMenu(string text)
         {
             Console.Clear();
             Menu defaultMenu = new Menu(Menus.DefaultMenu);
             Console.Write(defaultMenu.Display());
+            Console.SetCursorPosition(7, 8);
+            Console.Write($"{text}");
         }
 
-        public static void OtherMenu()
+        public static void BannerOnly()
         {
             Console.Clear();
-            Menu otherMenu = new Menu(Menus.OtherMenu);
-            Console.Write(otherMenu.Display());
+            Menu bannerOnly = new Menu(Menus.BannerOnly);
+            Console.Write(bannerOnly.Display());
         }
 
         public static void SaveMenu(string formattedWorkout)
@@ -190,9 +122,9 @@ namespace GymLog
             Console.Clear();
             Menu saveMenu = new Menu(Menus.DefaultMenu);
             Console.Write(saveMenu.Display());
-            
-            Console.WriteLine("\tWould you like to save your workout to a file? (y/n)");
-            Console.Write("\t>>> ");
+            Console.SetWindowSize(92, 20);
+            Console.SetCursorPosition(7, 8);
+            Console.Write("\tWould you like to save your workout to a file? (y/n) ");
 
             //// TODO: Print workout results to text/JSON files and/or SQL DB
             ConsoleKey saveKey = Console.ReadKey(true).Key;
@@ -209,9 +141,9 @@ namespace GymLog
             }
             else
             {
-                DefaultMenu();
-                Console.WriteLine("Please make a valid selection. Press 'Y' key to save or 'N' key to quit without saving.");
-                Thread.Sleep(3000);
+                DefaultMenu("Please make a valid selection. Press 'Y' key to save or 'N' key to quit without saving.");
+                //Console.WriteLine("Please make a valid selection. Press 'Y' key to save or 'N' key to quit without saving.");
+                Thread.Sleep(2000);
                 SaveMenu(formattedWorkout);
             }
         }

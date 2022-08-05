@@ -31,27 +31,23 @@ namespace GymLog
 
 
 
-        internal static async void CreateWorkout()
+        public static async void CreateWorkout()
         {
 
             // Get/store today's date
             string date = Convert.ToString(DateTime.Today);
 
             // Load the default menu/banner
-            Menu.DefaultMenu();
+            Menu.DefaultMenu("Enter workout duration (in minutes):  >>> ");
 
             // Get duration from user
-            Console.WriteLine("\tEnter workout duration (in minutes):");
-            Console.Write("\t>>> ");
             // TODO: Add TryParse validation
             int workoutLength = Convert.ToInt32(Console.ReadLine()) / 60;
 
             // Load the default menu/banner
-            Menu.DefaultMenu();
+            Menu.DefaultMenu("Enter your weight (in pounds):  >>> ");
 
             // Get user's bodyweight
-            Console.WriteLine("\tEnter your weight (in pounds):");
-            Console.Write("\t>>> ");
             // TODO: Add TryParse validation
             int bodyWeight = Convert.ToInt32(Console.ReadLine());
 
@@ -72,14 +68,13 @@ namespace GymLog
             string formattedWorkout = Data.FormatWorkout(theWorkout, exercises);
 
             // Display banner
-            Menu.DefaultMenu();
+            Menu.DefaultMenu("WORKOUT SUMMARY");
 
             // Print the workout to the screen
+            Console.WriteLine("\n\n\n");
+            Console.SetWindowSize(92, 50);
             Console.Write(formattedWorkout);
-
-            // Show the results to the user and wait
-            Thread.Sleep(1000);
-
+            Console.ReadKey();
             Menu.SaveMenu(formattedWorkout);
 
         }

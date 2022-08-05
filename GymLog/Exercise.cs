@@ -46,16 +46,16 @@ namespace GymLog
         {
 
             // Clear screen and load fresh banner
-            Menu.DefaultMenu();
+            Menu.DefaultMenu("How many exercises would you like to add ?  >>> ");
 
             // Request number of sets for current exercise from user
-            Console.WriteLine("\tHow many exercises would you like to add?");
-            Console.Write("\t>>> ");
+            //Console.WriteLine("\tHow many exercises would you like to add?");
+            //Console.Write("\t>>> ");
             int numOfExercises = Convert.ToInt32(Console.ReadLine());
             
-            Menu.DefaultMenu();
+            Menu.DefaultMenu("Okay, adding {numOfExercises} exercises.");
             
-            Console.WriteLine($"\tOkay, adding {numOfExercises} exercises.\n");
+            //Console.WriteLine($"\tOkay, adding {numOfExercises} exercises.\n");
 
             // Create an empty array for the sets using the input #
             Exercise[] exerciseArray = new Exercise[numOfExercises];
@@ -65,10 +65,10 @@ namespace GymLog
             for (int i = 1; i <= numOfExercises; i++)
             {
 
-                Menu.DefaultMenu();
+                Menu.DefaultMenu($"What was the {Calculator.AddOrdinal(i)} exercise you performed?  >>> ");
 
-                Console.WriteLine($"\tWhat was the {Calculator.AddOrdinal(i)} exercise you performed?");
-                Console.Write("\t>>> ");
+                //Console.WriteLine($"\tWhat was the {Calculator.AddOrdinal(i)} exercise you performed?");
+                //Console.Write("\t>>> ");
                 string exerciseName = Console.ReadLine();
 
                 Set[] sets = AddSets(exerciseName);
@@ -77,7 +77,7 @@ namespace GymLog
 
                 exerciseArray[arrayPosition] = exercise;
 
-                Console.WriteLine($"\t{Calculator.AddOrdinal(i)} exercise added!");
+                Console.WriteLine($"\n\n\t{Calculator.AddOrdinal(i)} exercise added!");
                 Thread.Sleep(500);
 
                 arrayPosition++;
@@ -94,15 +94,15 @@ namespace GymLog
             string thisExercise = exerciseName;
 
             // Clear screen and load fresh banner
-            Menu.DefaultMenu();
+            Menu.DefaultMenu($"How many sets of {thisExercise} would you like to add?  >>> ");
 
             // Request number of sets for current exercise from user
-            Console.WriteLine($"\tHow many sets of {thisExercise} would you like to add?");
-            Console.Write("\t>>> ");
+            //Console.WriteLine($"\tHow many sets of {thisExercise} would you like to add?");
+            //Console.Write("\t>>> ");
             // TODO: Add TryParse validation
             int numOfSets = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine($"\tOkay, adding {numOfSets} sets of {thisExercise}.\n");
+            Console.WriteLine($"\n\tOkay, adding {numOfSets} sets of {thisExercise}.\n");
 
             // Create an empty array for the sets using the input #
             Exercise.Set[] exerciseSetArray = new Exercise.Set[numOfSets];
@@ -112,21 +112,21 @@ namespace GymLog
             for (int i = 1; i <= numOfSets; i++)
             {
 
-                Menu.DefaultMenu();
+                Menu.DefaultMenu($"How much weight did you lift for your {Calculator.AddOrdinal(i)} set of {thisExercise}?  >>> ");
 
-                Console.WriteLine($"\tHow much weight did you lift for your {Calculator.AddOrdinal(i)} set of {thisExercise}?");
-                Console.Write("\t>>> ");
+                //Console.WriteLine($"\tHow much weight did you lift for your {Calculator.AddOrdinal(i)} set of {thisExercise}?");
+                //Console.Write("\t>>> ");
                 // TODO: Add TryParse validation
                 int Weight = Convert.ToInt32(Console.ReadLine());
 
-                Menu.DefaultMenu();
+                Menu.DefaultMenu($"How many reps did you complete for your {Calculator.AddOrdinal(i)} set of {thisExercise}?  >>> ");
 
-                Console.WriteLine($"\tHow many reps did you complete for your {Calculator.AddOrdinal(i)} set of {thisExercise}? ");
-                Console.Write("\t>>> ");
+                //Console.WriteLine($"\tHow many reps did you complete for your {Calculator.AddOrdinal(i)} set of {thisExercise}? ");
+                //Console.Write("\t>>> ");
                 // TODO: Add TryParse validation
                 int Reps = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine($"\t{Calculator.AddOrdinal(i)} set of {thisExercise} has been added!");
+                Console.WriteLine($"\n\t{Calculator.AddOrdinal(i)} set of {thisExercise} has been added!");
                 Thread.Sleep(500);
 
                 Set exerciseSet = new Set(i, Weight, Reps);
@@ -135,6 +135,7 @@ namespace GymLog
                 arrayPosition++;
 
             }
+            Console.WriteLine("\n");
             PrintSets(exerciseSetArray);
 
             return exerciseSetArray;
