@@ -28,12 +28,11 @@ namespace GymLog
         public static int CaloriesBurned(int intensity, decimal bodyWeight, decimal workoutLength)
         {
             int caloriesBurned = Convert.ToInt32((bodyWeight / 2.205m) * intensity * workoutLength);
-            // Console.WriteLine(caloriesBurned);
             return caloriesBurned;
 
         }
 
-        // TODO: Finish code for 1RM calculator
+        // Find and return highest 1RM by cycling through all sets for each exercise
         public static int OneRepMax(Exercise.Set[] sets)
         {
             int oneRepMax = 0;
@@ -46,7 +45,7 @@ namespace GymLog
                 }
                 else
                 {
-                    tempWeight = sets[i].Weight / (1.0278 - 0.0278 * sets[i].Reps); // weight / ( 1.0278 – 0.0278 × reps )
+                    tempWeight = sets[i].Weight / (1.0278 - 0.0278 * sets[i].Reps);
                 }
                 
             }
@@ -54,7 +53,7 @@ namespace GymLog
             return oneRepMax;
         }
 
-        // TODO: Finish workout volume calculator
+        // Calculate total workout volume in pounds
         public static int VolumeCalc(Exercise[] exercises)
         {
             int totalVolume = 0;

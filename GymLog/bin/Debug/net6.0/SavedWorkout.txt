@@ -1,15 +1,25 @@
 ════════════ GYMLOG WORKOUT SHEET ════════════
-Workout date: 8/8/2022 3:13:58 PM
-Workout duration: 1.4 hours
+Workout date: 8/9/2022 8:59:44 AM
+Workout duration: 1.5 hours
 Bodyweight: 200 pounds
-Calories burned: 635 calories
-Total volume: 123 pounds
+Calories burned: 680 calories
+Total volume: 4140 pounds
 
 
 Exercise #: 1
-Exercise Name: 123
-Est. 1RM: 0 pounds
+Exercise Name: Squat
+Est. 1RM: 334 pounds
 
 Set #:		Weight:		Reps:
-1		123		1
+1		315		3
+2		315		3
+
+
+Exercise #: 2
+Exercise Name: Bench Press
+Est. 1RM: 253 pounds
+
+Set #:		Weight:		Reps:
+1		225		5
+2		225		5
 

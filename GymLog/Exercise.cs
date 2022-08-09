@@ -51,6 +51,7 @@ namespace GymLog
 
             int arrayPosition = 0;
 
+            // Cycle through user-defined number of sets and collect data
             for (int i = 1; i <= numOfExercises; i++)
             {
 
@@ -74,7 +75,6 @@ namespace GymLog
             return exerciseArray;
         }
 
-
         public static Set[] AddSets(string exerciseName)
         {
 
@@ -94,6 +94,7 @@ namespace GymLog
 
             int arrayPosition = 0;
 
+            // Cycle through user-defined number of exercises and collect data
             for (int i = 1; i <= numOfSets; i++)
             {
 
@@ -121,7 +122,6 @@ namespace GymLog
             return exerciseSetArray;
 
         }
-
 
         public static void PrintSetsToConsole(Set[] exerciseSetArray)
         {
