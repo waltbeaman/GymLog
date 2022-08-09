@@ -4,15 +4,18 @@
 
 // TODO LIST:
 //   1. Move all Console.* functions to Program and Menu classes to make code more reusable.--DONE
-//   2. Move methods to appropriate classes (outside of Program)
-//   3. Write code the 1RM calculator.
-//   4. Write code for SQL/JSON database connection.
-//   5. Add exception handling.
-//   6. Modify menus to be called from the Menu class.--DONE
-//   7. Add improved design elements if sufficient time:
-//          a. Set cursor position to be inside a box.
+//   2. Move methods to appropriate classes (outside of Program class)--DONE
+//   3. Write code the 1RM calculator.--DONE
+//   4. Write code for total volume calculator.--DONE
+//   5. Write code for SQL/JSON database connection.
+//   6. Add exception handling.
+//   7. Modify menus to be called from the Menu class.--DONE
+//   8. Add improved design elements if sufficient time:
+//          a. Set cursor position to be inside a box.--DONE
 //          b. Create more aesthetic formatting of workout data.
-//          c. Improve menu design.
+//          c. Improve menu design.--DONE
+
+
 using System.Text;
 
 namespace GymLog

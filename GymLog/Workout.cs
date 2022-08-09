@@ -8,41 +8,32 @@ namespace GymLog
 {
     public class Workout
     {
-        private Exercise[] _exercises;
-        private string _date;
-        private int _workoutLength;
-        private int _bodyWeight;
-        private int _caloriesBurned;
+        public string Date { get; set; } = Convert.ToString(DateTime.Now); // Always use today's date for new workouts
+        public decimal WorkoutLength { get; set; }
+        public int CaloriesBurned { get; set; }
+        public int BodyWeight { get; set; }
+        public int TotalVolume { get; set; }
+        public Exercise[] Exercises { get; set; }
 
-        public Workout(string date, int workoutLength, int caloriesBurned, int bodyWeight, Exercise[] exercises)
+        public Workout(decimal workoutLength, int caloriesBurned, int bodyWeight, Exercise[] exercises)
         {
-            Date = date;
             WorkoutLength = workoutLength;
             CaloriesBurned = caloriesBurned;
             BodyWeight = bodyWeight;
             Exercises = exercises;
+            TotalVolume = Calculator.VolumeCalc(exercises); // Calculate the total volume from constructor
         }
 
-        public string Date { get => _date; set => _date = value; }
-        public int WorkoutLength { get => _workoutLength; set => _workoutLength = value; }
-        public int CaloriesBurned { get => _caloriesBurned; set => _caloriesBurned = value; }
-        public int BodyWeight { get => _bodyWeight; set => _bodyWeight = value; }
-        public Exercise[] Exercises { get => _exercises; set => _exercises = value; }
 
-
-
-        public static async void CreateWorkout()
+        public static void CreateWorkout()
         {
-
-            // Get/store today's date
-            string date = Convert.ToString(DateTime.Today);
-
             // Load the default menu/banner
             Menu.DefaultMenu("Enter workout duration (in minutes):  >>> ");
 
             // Get duration from user
             // TODO: Add TryParse validation
-            int workoutLength = Convert.ToInt32(Console.ReadLine()) / 60;
+            decimal workoutLength = Convert.ToDecimal(Console.ReadLine()) / 60;
+
 
             // Load the default menu/banner
             Menu.DefaultMenu("Enter your weight (in pounds):  >>> ");
@@ -62,10 +53,11 @@ namespace GymLog
 
             // Instantiate the new workout
             // Load functions to calculate workout data or gather it from user as applicable
-            Workout theWorkout = new Workout(date, workoutLength, caloriesBurned, bodyWeight, exercises);
+            Workout theWorkout = new Workout(workoutLength, caloriesBurned, bodyWeight, exercises);
 
             // Send workout details to Data class for formatting
-            string formattedWorkout = Data.FormatWorkout(theWorkout, exercises);
+            string printWorkoutToFile = Data.FormatWorkout(theWorkout, Data.PrintType.ToFile);
+            string printWorkoutToConsole = Data.FormatWorkout(theWorkout, Data.PrintType.ToConsole);
 
             // Display banner
             Menu.DefaultMenu("WORKOUT SUMMARY");
@@ -73,9 +65,11 @@ namespace GymLog
             // Print the workout to the screen
             Console.WriteLine("\n\n\n");
             Console.SetWindowSize(92, 50);
-            Console.Write(formattedWorkout);
+            Console.Write($"{printWorkoutToConsole}");
+            Thread.Sleep(2000);
+            Console.WriteLine("\n\tPress any key to continue.");
             Console.ReadKey();
-            Menu.SaveMenu(formattedWorkout);
+            Menu.SaveMenu(printWorkoutToFile);
 
         }
 

@@ -37,21 +37,33 @@ namespace GymLog
         public static int OneRepMax(Exercise.Set[] sets)
         {
             int oneRepMax = 0;
-            int tempWeight = 0;
-            foreach (Exercise.Set set in sets)
+            double tempWeight = 0;
+            for (int i = 0; i <= sets.Length - 1; i++)
             {
-                tempWeight += set.Weight;
+                if (tempWeight > oneRepMax)
+                {                    
+                    oneRepMax = Convert.ToInt32(tempWeight);
+                }
+                else
+                {
+                    tempWeight = sets[i].Weight / (1.0278 - 0.0278 * sets[i].Reps); // weight / ( 1.0278 – 0.0278 × reps )
+                }
+                
             }
 
             return oneRepMax;
         }
 
+        // TODO: Finish workout volume calculator
         public static int VolumeCalc(Exercise[] exercises)
         {
             int totalVolume = 0;
-            foreach (Exercise ex in exercises)
+            foreach (Exercise exercise in exercises)
             {
-                // TODO: Write code for workout volume calculator
+                foreach (Exercise.Set set in exercise.ExerciseSets)
+                {
+                    totalVolume += set.Weight * set.Reps;
+                }
             }
             return totalVolume;
         }

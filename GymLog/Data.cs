@@ -6,28 +6,39 @@ using System.Threading.Tasks;
 
 namespace GymLog
 {
-    internal class Data
+    public static class Data
     {
-        public static string FormatWorkout(Workout theWorkout, Exercise[] exercises)
+        public enum PrintType
         {
-            // TODO: Fix formatting and create separate options for printing to console and file
-            // TODO: Save string for file header to external text file
+            ToFile,
+            ToConsole
+        }
+
+        public static string FormatWorkout(Workout theWorkout, PrintType printType)
+        {
             StringBuilder fileHeaderString = new StringBuilder();
-            fileHeaderString.Append("════════════ GYMLOG WORKOUT SHEET ════════════").AppendLine();
-            fileHeaderString.Append($"Workout date: {theWorkout.Date} \n" +
-                                    $"Workout duration: {theWorkout.WorkoutLength} \n" +
-                                    $"Bodyweight: {theWorkout.BodyWeight} \n" +
-                                    $"Calories burned: { theWorkout.CaloriesBurned} \n").AppendLine();
+            // Add title line if printing to file
+            if (printType == PrintType.ToFile)
+            {
+                fileHeaderString.Append("════════════ GYMLOG WORKOUT SHEET ════════════").AppendLine();
+            }
+            
+            fileHeaderString.Append($"Workout date: {theWorkout.Date}\n" +
+                                    $"Workout duration: {Math.Round(theWorkout.WorkoutLength, 2)} hours\n" +
+                                    $"Bodyweight: {theWorkout.BodyWeight} pounds\n" +
+                                    $"Calories burned: { theWorkout.CaloriesBurned} calories\n" +
+                                    $"Total volume: { theWorkout.TotalVolume} pounds\n").AppendLine();
 
 
-            StringBuilder exerciseString = new();
+            StringBuilder exerciseString = new StringBuilder();
 
-            foreach (Exercise exercise in exercises)
+            foreach (Exercise exercise in theWorkout.Exercises)
             {
                 exerciseString.AppendLine();
 
                 exerciseString.Append($"Exercise #: {exercise.ExerciseID}\n" +
-                                      $"Exercise Name: {exercise.ExerciseName}").AppendLine();
+                                      $"Exercise Name: {exercise.ExerciseName}\n" +
+                                      $"Est. 1RM: {exercise.EstOneRepMax} pounds").AppendLine();
 
                 exerciseString.AppendLine();
 

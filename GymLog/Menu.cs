@@ -10,17 +10,8 @@ namespace GymLog
 {
     public class Menu
     {
-        private string _banner;
-        private string _bottom;
-
-        public string Banner { get => _banner; set => _banner = value; }
-        public string Bottom { get => _bottom; set => _bottom = value; }
-
-        public Menu(Menus menuOption)
-        {
-            Banner = File.ReadAllText("Banner.txt");
-            Bottom = File.ReadAllText($"{menuOption}.txt");
-        }
+        public string Banner { get; set; } = File.ReadAllText("Banner.txt");
+        public string Bottom { get; set; }
 
         public enum Menus
         {
@@ -29,6 +20,11 @@ namespace GymLog
             DefaultMenu,
             BannerOnly,
             SaveMenu
+        }
+
+        public Menu(Menus menuOption)
+        {
+            Bottom = File.ReadAllText($"{menuOption}.txt");
         }
 
         public string Display() => Banner + Bottom;
@@ -51,13 +47,12 @@ namespace GymLog
                     Workout.CreateWorkout();
                     break;
                 case ConsoleKey.D2:
-                    // Test code
-                    DefaultMenu("Sample");
-                    Console.WriteLine("It works!");
+                    // TODO: add user functionality
+                    DefaultMenu("It works!");
                     break;
                 case ConsoleKey.D3:
-                    DefaultMenu("AN EVEN LARGER SAMPLE IN ALL CAPS");
-                    Console.WriteLine("It works!");
+                    // TODO: add user functionality
+                    DefaultMenu("It works!");
                     break;
                 case ConsoleKey.Escape:
                     Environment.Exit(0);
